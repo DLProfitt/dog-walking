@@ -1,6 +1,7 @@
-import { getPets } from "./database.js"
+import { getPets, getWalkers } from "./database.js"
 
 const pets = getPets()
+const walkers = getWalkers()
 
 export const RegisteredPets = () => {
     let petHTML = "<ul>"
@@ -22,7 +23,8 @@ export const RegisteredPets = () => {
 
                 for (const petObject of pets) {
                     if (petObject.id === parseInt(petPrimaryKey)) {
-                        window.alert(`${petObject.name} barks at you`)
+                        const assignedWalker = walkers.find(walker => walker.id === petObject.walkerId)
+                        window.alert(`${petObject.name} is being walked by ${assignedWalker.name}`)
                     }
                 }
             }
